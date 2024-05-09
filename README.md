@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## npm i - D tailwindcss
+# npx tailwindcss init
+config what file to tracck 
+all the file in src which has extention of {js,html} 
+after it config app.css as @tailwind base
+@tailwind components
+@tailwind utilities
+
+
+
+head
+body 
+side-bar
+ =>menuItems
+main-container
+=>button list
+=>vedio container
+=>vedio card
+
+#npm i @redux/toolkit
+npm i react-redux
+check with redux devtools
+
+
