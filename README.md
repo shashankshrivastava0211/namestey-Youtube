@@ -93,3 +93,12 @@ npm i react-redux
 check with redux devtools
 
 
+buttom=>dispatch=>reducerfunction(callback)=>slice m change=>selector function=>components 
+now connecting it with watch page 
+npm i react router dom 
+ 
+
+children will go wherever there is outlet so we will create outlet below body
+used useSearchParams() instead of useParams() 
+
+
