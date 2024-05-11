@@ -103,5 +103,30 @@ children will go wherever there is outlet so we will create outlet below body
 used useSearchParams() instead of useParams() 
 
 
-# youtube-clone
+# search bar 
+starting typing and search should start its basically making an api call with each letter typed after every key press buyt this is not the case basically i am about to search for flag just for flag i made 4 api call inthis firstgh three calls are waste so 
+# debouncing =>
+suppose if jyourar etyping very fast the diff between two key stroke is very less and yyping sloe fdiff betweeeen two key press is high  for eg 
+typinhg slow=>200mx
+typing fast => 30ms if user kktypes very fast he/she does not require any suggestion this will increase performance
+-i phone pro max=>14 *1000=>14000
+with debouncing 3 API calls =>3000 it makes a huge difference itn optimization then why are they even showing results
+ans to give better User expierence so we hav to build it but with very high optimization 
+
+debouncing with 200ms means that between 2 key stroke if the gap is less than =200mx than decline api call becaus emaybe be knowing what he she is searchin gor youtube deboucing is very less but flipkart debouncing is more and api for youtube is faster
+
+intigrated youtube debouncing algorithm on search bar to search for any vedio over youtubew
+calls api call and bind it with state variable in orre to send reseted state wion place of query now how an i set time 
+
+# dry running debouncing 
+    key pressed -i ==> it will render the compoent 
+    =>calls use effect 
+    => start timer
+    =>and make api call after 2 ms 
+    suppose if user initiated it again by pressing next key "p"==>ip
+    it will trigger reconcillation procees so when it haopens old component needs to be unmount any timer of here will not be completed so we have used return for cleaning in useEffecrt so api call for it 
+ => re-render compionnt calls use effect again and now anew timer is setup agai nas this is differenct      constant as reconcillation just happened now suppose 2ms is opassed in and there is no key pressed so        it     will make an api call 
+ all the other cals before the set timebout sec api will not be called as again rerenderes has happened and that timeout function is cleared this time 
+
+ # to further optimize it using cache to just like youtube use it should store the api call
 

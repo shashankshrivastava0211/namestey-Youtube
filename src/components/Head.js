@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch } from "react-redux";
+import { SEARCH_YOUTUBE } from "../utils/constants";
 
 const Head = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions,setShowSuggestions]=useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    const data = await fetch(SEARCH_YOUTUBE + searchQuery);
+    const json = await data.json();
+    setSearchSuggestions(json[1] || []);
+  };
+
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -25,15 +43,32 @@ const Head = () => {
         />
       </div>
       {/* Search Bar */}
-      <div className="flex items-center w-1/2 bg-gray-100 rounded-full px-2">
+      <div className="relative w-1/2">
         <input
-          className="w-full bg-gray-100 py-2 px-4 rounded-l-full focus:outline-none"
+          className="w-full bg-gray-100 py-2 px-4 rounded-full focus:outline-none"
           type="text"
           placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onFocus={()=>setShowSuggestions(true)}
+          onBlur={()=>setShowSuggestions(false)}
+          
+
         />
-        <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-r-full">
+        <button className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-full">
           🔍
         </button>
+        {searchSuggestions.length > 0&&showSuggestions && (
+          <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-b-lg mt-1">
+            <ul>
+              {searchSuggestions.map((suggestion, index) => (
+                <li key={index} className="p-2 hover:bg-gray-100 cursor-pointer">
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       {/* User Icon */}
       <img
