@@ -1,31 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SEARCH_YOUTUBE } from "../utils/constants";
+import { cacheResults } from "../utils/searcSlice";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions,setShowSuggestions]=useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
-    return () => {
+  const searchCache=useSelector(store=>store.search)//susbcribing
+  const dispatch = useDispatch() 
+
+// serchcache={
+//   "iphone":["iphone11","iphone12","iphone2"]==>
+// }
+
+  useEffect(()=>{
+    const timer=setTimeout(()=>{
+      if(searchCache[searchQuery]){
+        setSearchSuggestions(searchCache[searchQuery]);
+      }
+      else{
+        getSearchSuggestions()
+      }
+      
+    },200); 
+
+
+    return ()=>{
       clearTimeout(timer);
-    };
-  }, [searchQuery]);
+    }
+
+  },[searchQuery])
 
   const getSearchSuggestions = async () => {
     const data = await fetch(SEARCH_YOUTUBE + searchQuery);
     const json = await data.json();
     setSearchSuggestions(json[1] || []);
+
+    //update an action 
+    dispatch(cacheResults({
+      [searchQuery]:json[1]
+    }))
   };
 
-  const dispatch = useDispatch();
+  
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
-
+ 
   return (
     <div className="flex items-center justify-between p-3 m-2 shadow-lg bg-white">
       {/* Menu and Logo */}

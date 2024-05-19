@@ -129,4 +129,60 @@ calls api call and bind it with state variable in orre to send reseted state wio
  all the other cals before the set timebout sec api will not be called as again rerenderes has happened and that timeout function is cleared this time 
 
  # to further optimize it using cache to just like youtube use it should store the api call
+now when to decide cache we have to use data structure we have to structure cache well in order to not call
+bad api 
+if cache :[]as an array time complexity to find in an array is O(N)==>cz we have to iterate some methods like 
+array.indexOf() and array.include()will optimize it but in same timecomplexity 
+==>
+# eg of destrucring object 
+const info={
+    id=1,
+    name:"shashank"=========================>//extract id age and name generally we ave to write{info.id},
+    age:23,=================================>//{info.name} to overcome this we can destructure them as 
+    {age , name , id}=info==================>{name},{age}
 
+}
+[i,ip,iph,iphone]==> of created an object it will take O(1) hash map 0(1) isfar better than O(N) as searching in object if we can also  use new Map();
+# rest 
+let arr=[3,5,6,7,8]
+let a=arr[1]
+let b=arr[2]
+//destructuring ==>
+let [a,b,c,d,e]=arr //one way
+let [a,b...rest]=arr//rest will be in a object 
+console.log(a,b,rest)==>rest will hold object for rest all 
+
+we will use object.assign
+search is usinhg ==>
+debouncing 
+caching 
+and live data
+
+n level comments nesting like reddit where can i find data for n level nestingh 
+
+//pagination infinite scroll we will built infinite scroll now 
+there ar etwo ways by which we can handle live chat 
+challenges of live chat 
+1) first challange is to get data live 
+2) how to update the ui from live data
+at the end of the day a new div is comming with commenting whenever a new comment is comming page is appending with a new div but right now there are 27 k people watching it so if iu keep putting new div page will blow now we have to update ui for live aklso give a better ui for user ui layer has to update 
+data layer ==> data layer should get data 
+
+# problkem 1 to get data layer live data 
+# update it with current ui layer with live data
+
+============>
+data(live)==>how can i handle data of this application if this is not live we can just call an api and our data is done we can do this using web sockets web sockets basically is a two way connection between ui and server its like a handshake once this cionnection is done you can send data from either side,bi-dierection we can send data from ui to backend and ui to backend initial connection takes some time here
+2) api polling is abnother way to update live data ibn this ui request it is a unidirectional method it will send data as==>
+UI===========>request=======>server(interval) than server in send data in batches
+data (live) ui will keep polling data after seconds 
+
+examples what about gmail is gmail a web socket or polling we dont need to regularize our ui in gmail we can also check in evry 10 sec with out backend to go for it so we can do API polling in gmail 
+
+now suppose theres a application like stock market then we will need sockets as there on every mili secopnd we need to be very real time like type it will use sockets like zerodha
+lets talk about watsapp can we do api polling like after 10 sec i will get chunk of message now suppose if i am texting someone very fast order can change because api polling like so we use web socket there 
+
+why this live page is not freezing as it has to createwalot of div for every we dont relise it yputube is also doining cleaning work as its deletetinh alkit  of messages afte new messages youtube removed previous messages after 100 200 messahes 
+
+
+# don't directly start writing map start build manually then use map 
